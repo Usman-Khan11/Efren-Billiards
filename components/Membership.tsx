@@ -80,7 +80,7 @@ const Membership: React.FC = () => {
     // window.open(whatsappUrl, '_blank');
 
     if (!user?.id) {
-      alert('Please login to continue.');
+      window.location.assign('https://orderaty.noqoodypay.com/index.html?ShopID=8#cart');
       return;
     }
 
@@ -96,7 +96,7 @@ const Membership: React.FC = () => {
 
     const result = await createNoqoodyPaymentLink({
       description: `Buy *${planName} Membership* (${period} Plan at QAR ${price}/mo).`,
-      amount: price,
+      amount: isAnnual ? price * 12 : price,
       email: profile?.email,
       phone: profile?.phone,
       name: profile?.full_name

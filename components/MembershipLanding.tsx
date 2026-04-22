@@ -30,7 +30,7 @@ type Plan = {
 
 const MembershipLanding: React.FC = () => {
   const { user, profile } = useAuth();
-  const [isAnnual, setIsAnnual] = useState(true);
+  const [isAnnual, setIsAnnual] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [hasInteracted, setHasInteracted] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -226,7 +226,7 @@ const MembershipLanding: React.FC = () => {
     const period = isAnnual ? 'Annual' : 'Monthly';
 
     if (!user?.id) {
-      alert('Please login to continue.');
+      window.location.assign('https://orderaty.noqoodypay.com/index.html?ShopID=8#cart');
       return;
     }
 
@@ -242,7 +242,7 @@ const MembershipLanding: React.FC = () => {
 
     const result = await createNoqoodyPaymentLink({
       description: `Buy *${planName} Membership* (${period} Plan at QAR ${price}/mo).`,
-      amount: price,
+      amount: isAnnual ? price * 12 : price,
       email: profile?.email,
       phone: profile?.phone,
       name: profile?.full_name
