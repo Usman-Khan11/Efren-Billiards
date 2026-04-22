@@ -1,0 +1,59 @@
+-- ==============================================================================
+-- HIGH-QUALITY PRESET BANNERS FOR EFREN BILLIARDS
+-- Run this in the Supabase SQL Editor to populate the system
+-- ==============================================================================
+
+-- Clear existing banners to avoid duplicates (Optional)
+-- DELETE FROM public.member_banners;
+
+INSERT INTO public.member_banners (title, marketing_message, instruction_message, target_type, target_value, whatsapp_preset)
+VALUES 
+-- 1. General Welcome (For everyone who isn't targeted specifically)
+(
+    'Welcome to the Elite Lounge', 
+    'Experience world-class billiards in the heart of Doha. Join our community of 500+ active players today.', 
+    'Sign up now to unlock member-only table rates and priority booking.', 
+    'general', 
+    NULL, 
+    'Hi, I would like to learn more about the Elite Member Club benefits.'
+),
+
+-- 2. Bronze Upsell (Targeting Bronze members to move to Silver)
+(
+    'Level Up to Silver Status', 
+    'You are currently a Bronze member! Upgrade to Silver to unlock 15% off all dining and free entry to monthly tournaments.', 
+    'Click below to speak with our concierge about Silver benefits.', 
+    'tier', 
+    'Bronze', 
+    'Hi, I am a Bronze member and I want to upgrade my membership to Silver.'
+),
+
+-- 3. Silver Upsell (Targeting Silver members to move to Gold)
+(
+    'Reach for Gold Excellence', 
+    'Ultimate prestige awaits. Gold members enjoy 24/7 VIP lounge access and personalized cues storage.', 
+    'Ready for the highest tier? Our team is standing by to assist your upgrade.', 
+    'tier', 
+    'Silver', 
+    'Hi, I am a Silver member and I am ready to upgrade to the Gold Elite tier.'
+),
+
+-- 4. Guest Welcome (Targeting Guest/New users)
+(
+    'Limited Time: First Game Free', 
+    'New to the club? Register today and your first hour of play is on us. Discover the Efren difference.', 
+    'Complete your registration and show this banner at the reception.', 
+    'tier', 
+    'Guest', 
+    'Hi, I just registered as a Guest and I would like to claim my first hour free play!'
+),
+
+-- 5. Gold Retention (For the highest tier)
+(
+    'The Gold Standard', 
+    'Thank you for being a Gold Elite member. Enjoy your 20% discount on all upcoming international events.', 
+    'Check your dashboard for invitation-only tournament schedules.', 
+    'tier', 
+    'Gold', 
+    'Hi, I am a Gold member and I have a question about the upcoming tournaments.'
+);

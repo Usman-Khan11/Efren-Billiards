@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Efren Billiards & Events | Qatar</title>
+    <meta name="description" content="Experience the ultimate billiards and social destination in Doha. Professional Yalin tables, VIP rooms, leagues, tournaments, and a vibrant community. Join Efren Billiards & Events today." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://efrenbilliards.com/" />
+    <meta property="og:title" content="Efren Billiards & Events" />
+    <meta property="og:description" content="Experience the ultimate billiards and social destination in Doha. Professional Yalin tables, VIP rooms, leagues, tournaments, and a vibrant community. Join Efren Billiards & Events today." />
+    <meta property="og:image" content="https://iili.io/qK54urx.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://efrenbilliards.com/" />
+    <meta property="twitter:title" content="Efren Billiards & Events" />
+    <meta property="twitter:description" content="Experience the ultimate billiards and social destination in Doha. Professional Yalin tables, VIP rooms, leagues, tournaments, and a vibrant community. Join Efren Billiards & Events today." />
+    <meta property="twitter:image" content="https://iili.io/qK54urx.png" />
+
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                DEFAULT: '#3B82F6', // Blue (Tailwind blue-500)
+                dark: '#1D4ED8',    // Darker Blue
+              },
+              maroon: {
+                DEFAULT: '#800000', // Maroon
+                light: '#A00000',
+              },
+              dark: {
+                900: '#0F1110', // Billiard Charcoal
+                800: '#18181B',
+                700: '#27272A',
+              },
+              bronze: '#B87333',
+              silver: '#A8A8A8',
+              gold: '#C5A059',
+              charcoal: '#0F1110',
+              border: '#2A2C2B',
+              muted: '#7A7C7B',
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+              barrio: ['Barrio', 'cursive'],
+              galio: ['Space Grotesk', 'sans-serif'],
+            },
+            boxShadow: {
+              'glow': '0 0 20px rgba(59, 130, 246, 0.6)',
+              'glow-maroon': '0 0 20px rgba(128, 0, 0, 0.6)',
+            }
+          }
+        }
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barrio&family=Rubik+Glitch&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <style>
+      body { font-family: 'Inter', sans-serif; background-color: #0F0F11; color: #ffffff; }
+      html { scroll-behavior: smooth; }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #18181B; }
+      ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #475569; }
+      
+      /* Animation Utilities */
+      .animate-fade-in-slow {
+        animation: fadeIn 1.5s ease-out forwards;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 0.6; }
+      }
+      
+      .font-glitch {
+        font-family: 'Rubik Glitch', system-ui, sans-serif;
+      }
+
+      @keyframes transformAnim {
+        0% { transform: translate(-55%); }
+        100% { transform: translate(55%); }
+      }
+
+      @keyframes opacityAnim {
+        0%, 100% { opacity: 0; }
+        15% { opacity: 1; }
+        65% { opacity: 0; }
+      }
+
+      @keyframes letterAnim {
+        0% { opacity: 0; }
+        5% {
+          opacity: 1;
+          text-shadow: 0 0 4px #fff;
+          transform: scale(1.1) translateY(-2px);
+        }
+        20% { opacity: 0.2; }
+        100% { opacity: 0; }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "lucide-react": "https://esm.sh/lucide-react@^0.574.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

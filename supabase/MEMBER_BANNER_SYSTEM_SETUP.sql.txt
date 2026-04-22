@@ -1,0 +1,59 @@
+-- ==============================================================================
+-- SUPABASE POSTGRESQL SCHEMA UPDATES
+-- For: Efren Billiards Elegant Member Banner System
+-- ==============================================================================
+
+-- 1. Update Membership Tiers in profiles table
+-- Drops the old tier constraint and adds the new one including Gold, Silver, Bronze.
+DO $$
+BEGIN
+    ALTER TABLE public.profiles DROP CONSTRAINT IF EXISTS profiles_tier_check;
+    ALTER TABLE public.profiles ADD CONSTRAINT profiles_tier_check 
+        CHECK (tier IN ('Gold', 'Silver', 'Bronze', 'Guest', 'Admin', 'guest', 'admin', 'Player'));
+END $$;
+
+-- 2. Create member_banners table
+CREATE TABLE IF NOT EXISTS public.member_banners (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title TEXT NOT NULL,
+    marketing_message TEXT,
+    instruction_message TEXT,
+    target_type TEXT NOT NULL CHECK (target_type IN ('general', 'tier', 'specific_member')),
+    target_value TEXT, -- Stores NULL for general, Tier Name for tier, or User UUID for specific_member
+    whatsapp_preset TEXT,
+    is_active BOOLEAN DEFAULT true,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- 3. Security: Row Level Security (RLS)
+ALTER TABLE public.member_banners ENABLE ROW LEVEL SECURITY;
+
+-- Policy: Allow all authenticated users to view active banners
+DROP POLICY IF EXISTS "Allow authenticated users to select active banners" ON public.member_banners;
+CREATE POLICY "Allow authenticated users to select active banners" 
+    ON public.member_banners 
+    FOR SELECT 
+    TO authenticated 
+    USING (is_active = true);
+
+-- Policy: Allow admins full CRUD (Create, Read, Update, Delete)
+DROP POLICY IF EXISTS "Allow admins full management of banners" ON public.member_banners;
+CREATE POLICY "Allow admins full management of banners" 
+    ON public.member_banners 
+    FOR ALL 
+    TO authenticated 
+    USING (
+        EXISTS (
+            SELECT 1 FROM public.profiles 
+            WHERE profiles.id = auth.uid() AND profiles.tier IN ('Admin', 'admin')
+        )
+    );
+
+-- 4. Automation: Updated At Trigger
+-- This assumes update_updated_at_column() already exists from previous migrations.
+DROP TRIGGER IF EXISTS update_member_banners_updated_at ON public.member_banners;
+CREATE TRIGGER update_member_banners_updated_at
+    BEFORE UPDATE ON public.member_banners
+    FOR EACH ROW
+    EXECUTE FUNCTION public.update_updated_at_column();
